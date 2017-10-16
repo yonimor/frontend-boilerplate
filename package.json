@@ -1,7 +1,7 @@
 {
-  "name": "mobx-react-boilerplate",
   "version": "1.0.0",
-  "description": "Boilerplate for MobX + React project with JSX, ES6 compilation and hot code reloading",
+  "description": "",
+  "license": "",
   "scripts": {
     "start": "node server.js",
     "copy": "copyfiles index.html favicon.ico dist",
@@ -10,23 +10,6 @@
     "build": "npm run clean && npm run copy && npm run webpackProd",
     "lint": "eslint src"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mobxjs/mobx-react-boilerplate.git"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "mobx",
-    "starter-kit"
-  ],
-  "author": "Michel Weststrate <mweststrate@gmail.com> (http://github.com/mweststrate)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mobxjs/mobx/issues"
-  },
-  "homepage": "http://mobxjs.github.com/mobx",
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-eslint": "^6.1.0",
