@@ -33,6 +33,11 @@ class LoginStore {
         }
       });
   }
+
+  onLogout() {
+    console.log(123)
+    this.loginState = LoginStates.BEFORE;
+  }
 }
 
 export default new LoginStore();
