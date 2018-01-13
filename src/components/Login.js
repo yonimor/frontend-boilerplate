@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import { PageHeader, FormControl, Button } from 'react-bootstrap';
+import classnames from 'classnames';
 import { LoginStates } from '../stores/LoginStore';
 import '../styles/Login.scss';
-import { PageHeader, FormControl, Button } from 'react-bootstrap';
+
 
 @observer
 class Login extends Component {
@@ -38,7 +40,9 @@ class Login extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { loginStore, isTrying, isFail } = this.props;
+    const { loginStore } = this.props;
+    const { loginState } = loginStore;
+
     return (
       <form
         className="Login"
@@ -67,8 +71,8 @@ class Login extends Component {
           className="login-submit"
           bsStyle="primary"
         >Submit</Button>
-        {isTrying && <p className="spinner">Trying to login...</p>}
-        {isFail && <p className="login-failed">Login failed!</p>}
+        {loginState === LoginStates.TRYING && <p className="login-msg login-try">Trying to login...</p>}
+        {loginState === LoginStates.FAIL && <p className="login-msg login-fail">Login failed!</p>}
       </form>
     );
   }

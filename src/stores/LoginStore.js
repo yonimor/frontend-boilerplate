@@ -31,6 +31,9 @@ class LoginStore {
 
     firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
       this.loginState = LoginStates.FAIL;
+      setTimeout(() => {
+        this.loginState = LoginStates.BEFORE;
+      }, 3000);
     });
   }
 

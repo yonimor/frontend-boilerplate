@@ -13,11 +13,7 @@ class Root extends Component {
 
     return (
       <div className="AppContainer">
-        {loginStore.loginState !== LoginStates.SUCCESS && <Login
-          loginStore={loginStore}
-          isFail={loginStore.loginState === LoginStates.FAIL}
-          isTrying={loginStore.loginState === LoginStates.TRYING}
-        />}
+        {loginStore.loginState !== LoginStates.SUCCESS && <Login loginStore={loginStore}/>}
         {loginStore.loginState === LoginStates.SUCCESS && <Main loginStore={loginStore} />}
         {/*<DevTools/>*/}
       </div>

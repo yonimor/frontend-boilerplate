@@ -24,4 +24,17 @@
     display: block;
     margin: 0 auto;
   }
+
+  .login-msg {
+    margin-top: 1rem;
+    text-align: center;
+
+    &.login-try {
+      color: #337ab7;
+    }
+
+    &.login-fail {
+      color: red;
+    }
+  }
 }
