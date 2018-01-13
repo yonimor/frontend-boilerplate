@@ -53,6 +53,7 @@ class Login extends Component {
           id="email"
           className="login-input"
           value={email}
+          required
           onChange={this.onChangeEmail}
         />
         <label
@@ -64,6 +65,7 @@ class Login extends Component {
           id="password"
           className="login-input"
           value={password}
+          required
           onChange={this.onChangePassword}
         />
         <input
