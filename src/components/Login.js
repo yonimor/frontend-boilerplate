@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { LoginStates } from '../stores/LoginStore';
 import '../styles/Login.scss';
-import { FormControl, ControlLabel } from 'react-bootstrap';
+import { FormControl, Button } from 'react-bootstrap';
 
 @observer
 class Login extends Component {
@@ -63,12 +63,12 @@ class Login extends Component {
           required
           onChange={this.onChangePassword}
         />
-        <FormControl
+        <Button
           type="submit"
-          value="Submit"
           disabled={loginStore.loginState === LoginStates.TRYING}
           className="login-submit"
-        />
+          bsStyle="primary"
+        >Submit</Button>
         {isTrying && <p className="spinner">Trying to login...</p>}
         {isFail && <p className="login-failed">Login failed!</p>}
       </form>
