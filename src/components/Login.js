@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { LoginStates } from '../stores/LoginStore';
 import '../styles/Login.scss';
+import { FormControl, ControlLabel } from 'react-bootstrap';
 
 @observer
 class Login extends Component {
@@ -37,43 +38,38 @@ class Login extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { loginStore, isFail } = this.props;
+    const { loginStore, isTrying, isFail } = this.props;
     return (
       <form
         className="Login"
         onSubmit={this.onLogin}
       >
         <h1>Login</h1>
-        <label
-          htmlFor="email"
-          className="login-label"
-        >Email</label>
-        <input
+        <FormControl
           type="email"
           id="email"
           className="login-input"
           value={email}
+          placeholder="Email"
           required
           onChange={this.onChangeEmail}
         />
-        <label
-          htmlFor="password"
-          className="login-label"
-        >Password</label>
-        <input
+        <FormControl
           type="password"
           id="password"
           className="login-input"
           value={password}
+          placeholder="Password"
           required
           onChange={this.onChangePassword}
         />
-        <input
+        <FormControl
           type="submit"
           value="Submit"
           disabled={loginStore.loginState === LoginStates.TRYING}
           className="login-submit"
         />
+        {isTrying && <p className="spinner">Trying to login...</p>}
         {isFail && <p className="login-failed">Login failed!</p>}
       </form>
     );
