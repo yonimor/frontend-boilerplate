@@ -10,6 +10,7 @@ import '../styles/App.scss';
 class Root extends Component {
   render() {
     const { loginStore } = this.props;
+    console.log(loginStore.loginState);
     return (
       <div>
         {loginStore.loginState === LoginStates.SUCCESS ? (

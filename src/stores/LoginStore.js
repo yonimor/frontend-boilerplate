@@ -25,11 +25,11 @@ class LoginStore {
         password
       })
       .set('Accept', 'application/json')
-      .end(function(err, res) {
+      .end((err, res) => {
         if (err || !res.ok) {
-          console.error('login failed');
+          this.loginState = LoginStates.FAIL;
         } else {
-          console.log('login succeed', res);
+          this.loginState = LoginStates.SUCCESS;
         }
       });
   }
