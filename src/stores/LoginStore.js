@@ -10,31 +10,32 @@ export const LoginStates = {
 };
 
 class LoginStore {
-  @observable loginState = LoginStates.BEFORE;
+  @observable loginState = LoginStates.TRYING;
 
   constructor() {
-    console.log('instantiate LoginStore');
-    this.getLoggedInUser();
+    this.listenToFirebaseLoginState();
   }
 
-  getLoggedInUser() {
+  listenToFirebaseLoginState() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.loginState = LoginStates.SUCCESS;
+      } else {
+        this.loginState = LoginStates.BEFORE;
       }
     });
   }
 
   onLogin(email, password) {
+    this.loginState = LoginStates.TRYING;
+
     firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
       this.loginState = LoginStates.FAIL;
     });
   }
 
   onLogout() {
-    firebase.auth().signOut().then(() => {
-      this.loginState = LoginStates.BEFORE;
-    })
+    firebase.auth().signOut();
   }
 }
 

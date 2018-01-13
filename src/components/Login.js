@@ -37,7 +37,7 @@ class Login extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { loginStore } = this.props;
+    const { loginStore, isFail } = this.props;
     return (
       <form
         className="Login"
@@ -72,6 +72,7 @@ class Login extends Component {
           disabled={loginStore.loginState === LoginStates.TRYING}
           className="login-submit"
         />
+        {isFail && <p className="login-failed">Login failed!</p>}
       </form>
     );
   }

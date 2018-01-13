@@ -10,14 +10,14 @@ import '../styles/App.scss';
 class Root extends Component {
   render() {
     const { loginStore } = this.props;
+    const loginStateIsBefore = loginStore.loginState === LoginStates.BEFORE;
+    const loginStateIsFail = loginStore.loginState === LoginStates.FAIL;
 
     return (
       <div>
-        {loginStore.loginState === LoginStates.SUCCESS ? (
-          <Main loginStore={loginStore} />
-        ): (
-          <Login loginStore={loginStore} />
-        )}
+        {(loginStateIsBefore || loginStateIsFail) && <Login loginStore={loginStore} isFail={loginStateIsFail} />}
+        {loginStore.loginState === LoginStates.TRYING && <div className="spinner">Trying to login...</div>}
+        {loginStore.loginState === LoginStates.SUCCESS && <Main loginStore={loginStore} />}
         {/*<DevTools/>*/}
       </div>
     );
