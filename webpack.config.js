@@ -1,24 +1,25 @@
-var path = require('path');
+const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
-  entry: './src/index',
-
+  devtool: "source-map",
+  entry: {
+    "app": [
+      "babel-polyfill",
+      "react-hot-loader/patch",
+      "./src/index"
+    ]
+  },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "/dist"),
+    filename: "[name].js"
   },
-
-  resolve: {
-    modulesDirectories: ['node_modules', './src'],
-    extensions: ['', '.js', '.jsx']
-  },
-
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.jsx?$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'src')
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
       },
       {
         test: /\.css$/,
@@ -37,7 +38,5 @@ module.exports = {
         loader: 'file-loader'
       }
     ]
-  },
-
-  plugins: []
-};
+  }
+}
