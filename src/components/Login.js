@@ -8,24 +8,24 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      email: '',
       password: ''
     };
     this.onLogin = this.onLogin.bind(this);
-    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
   }
 
   onLogin(e) {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     const { loginStore } = this.props;
-    loginStore.onLogin(username, password);
+    loginStore.onLogin(email, password);
   }
 
-  onChangeUsername(e) {
+  onChangeEmail(e) {
     this.setState({
-      username: e.target.value
+      email: e.target.value
     });
   }
 
@@ -36,7 +36,7 @@ class Login extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     const { loginStore } = this.props;
     return (
       <form
@@ -45,15 +45,15 @@ class Login extends Component {
       >
         <h1>Login</h1>
         <label
-          htmlFor="username"
+          htmlFor="email"
           className="login-label"
-        >Username</label>
+        >Email</label>
         <input
-          type="text"
-          id="username"
+          type="email"
+          id="email"
           className="login-input"
-          value={username}
-          onChange={this.onChangeUsername}
+          value={email}
+          onChange={this.onChangeEmail}
         />
         <label
           htmlFor="password"

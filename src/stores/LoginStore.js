@@ -16,26 +16,26 @@ class LoginStore {
     console.log('instantiate LoginStore')
   }
 
-  onLogin(username, password) {
-    console.log('login', username, password, baseUrl);
-    request
-      .post(`${baseUrl}/login`)
-      .send({
-        username,
-        password
-      })
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err || !res.ok) {
-          this.loginState = LoginStates.FAIL;
-        } else {
-          this.loginState = LoginStates.SUCCESS;
-        }
-      });
+  onLogin(email, password) {
+    console.log(email, password);
+    firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+      console.log('LoginStates.FAIL');
+      this.loginState = LoginStates.FAIL;
+    });
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        console.log('LoginStates.SUCCESS', user);
+        this.loginState = LoginStates.SUCCESS;
+      } else {
+        console.log('LoginStates.BEFORE');
+        // No user is signed in.
+      }
+    });
   }
 
   onLogout() {
-    console.log(123)
     this.loginState = LoginStates.BEFORE;
   }
 }
