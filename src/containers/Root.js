@@ -18,7 +18,7 @@ class Root extends Component {
         ): (
           <Login loginStore={loginStore} />
         )}
-        <DevTools/>
+        {/*<DevTools/>*/}
       </div>
     );
   }
