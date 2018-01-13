@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { LoginStates } from '../stores/LoginStore';
 import '../styles/Login.scss';
-import { FormControl, Button } from 'react-bootstrap';
+import { PageHeader, FormControl, Button } from 'react-bootstrap';
 
 @observer
 class Login extends Component {
@@ -44,10 +44,9 @@ class Login extends Component {
         className="Login"
         onSubmit={this.onLogin}
       >
-        <h1>Login</h1>
+        <PageHeader className="login-headline">Sign in</PageHeader>
         <FormControl
           type="email"
-          id="email"
           className="login-input"
           value={email}
           placeholder="Email"
@@ -56,7 +55,6 @@ class Login extends Component {
         />
         <FormControl
           type="password"
-          id="password"
           className="login-input"
           value={password}
           placeholder="Password"

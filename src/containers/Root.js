@@ -12,7 +12,7 @@ class Root extends Component {
     const { loginStore } = this.props;
 
     return (
-      <div>
+      <div className="AppContainer">
         {loginStore.loginState !== LoginStates.SUCCESS && <Login
           loginStore={loginStore}
           isFail={loginStore.loginState === LoginStates.FAIL}
