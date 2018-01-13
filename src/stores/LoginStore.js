@@ -13,30 +13,28 @@ class LoginStore {
   @observable loginState = LoginStates.BEFORE;
 
   constructor() {
-    console.log('instantiate LoginStore')
+    console.log('instantiate LoginStore');
+    this.getLoggedInUser();
   }
 
-  onLogin(email, password) {
-    console.log(email, password);
-    firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
-      console.log('LoginStates.FAIL');
-      this.loginState = LoginStates.FAIL;
-    });
-
+  getLoggedInUser() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // User is signed in.
-        console.log('LoginStates.SUCCESS', user);
         this.loginState = LoginStates.SUCCESS;
-      } else {
-        console.log('LoginStates.BEFORE');
-        // No user is signed in.
       }
     });
   }
 
+  onLogin(email, password) {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+      this.loginState = LoginStates.FAIL;
+    });
+  }
+
   onLogout() {
-    this.loginState = LoginStates.BEFORE;
+    firebase.auth().signOut().then(() => {
+      this.loginState = LoginStates.BEFORE;
+    })
   }
 }
 
