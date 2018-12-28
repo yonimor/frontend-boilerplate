@@ -13,7 +13,7 @@ const render = () => {
         <App />
       </Provider>
     </AppContainer>,
-    document.getElementById("root")
+    document.getElementById("app")
   );
 };
 

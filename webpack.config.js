@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   devtool: "source-map",
   entry: {
-    "app": [
+    "bundle": [
       "babel-polyfill",
       "react-hot-loader/patch",
       "./src/index"
