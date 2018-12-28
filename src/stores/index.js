@@ -1,4 +1,4 @@
-import loginStore from "./loginStore";
+import loginStore from "./LoginStore";
 
 export default {
   loginStore
