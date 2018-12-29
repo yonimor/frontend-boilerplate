@@ -19,7 +19,6 @@ class LoginStore {
       return res.json();
     }).then((res) => {
       if (!!res) {
-        console.log(res);
         this.isLoggedIn = true;
         this.user = res;
       }

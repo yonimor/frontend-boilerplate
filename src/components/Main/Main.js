@@ -8,9 +8,13 @@ class Main extends React.Component {
 		const { loginStore: { user } } = this.props;
 		return (
 			<div className="Main">
-				<p>{`Name: ${user.name}`}</p>
-				<p>{`E-Mail: ${user.email}`}</p>
-				<p>{`position: ${user.position}`}</p>
+				{!!user && (
+					<div>
+						<p>{`Name: ${user.name}`}</p>
+						<p>{`E-Mail: ${user.email}`}</p>
+						<p>{`position: ${user.position}`}</p>
+					</div>
+				)}
 			</div>
 		);
 	}

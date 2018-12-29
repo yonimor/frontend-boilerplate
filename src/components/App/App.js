@@ -15,8 +15,6 @@ class App extends React.Component {
 	render() {
 		const { loginStore: { isLoggedIn } } = this.props;
 		
-		console.log('this.props', isLoggedIn);
-		
 		return (
 			<div className="App">
 				{isLoggedIn ? <Main /> : <Login />}
